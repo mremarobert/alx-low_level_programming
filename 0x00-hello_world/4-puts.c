@@ -1,4 +1,9 @@
+
 #include<stdio.h>
+
+/**
+ * int main(void) - displays the text output
+ */ 
 
 int main(void)
 {
