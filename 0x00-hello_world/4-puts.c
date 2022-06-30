@@ -1,11 +1,7 @@
 
 #include<stdio.h>
 
-/**
- * int main(void) - displays the text output
- */ 
-
-int main(void)
+int main(void) /* main function returns the print statement */
 {
 	puts("\"Programming is like building a multilingual puzzle\n");
 
