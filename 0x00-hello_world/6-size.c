@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 /**
  * main - entry point of the function
  * Description: prints the size of various data types
