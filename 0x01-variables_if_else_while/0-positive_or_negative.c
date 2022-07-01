@@ -4,7 +4,7 @@
 /**
  * main - entry point
  * Description: the main function prints random number status
- * Result: returns success
+ * Return: returns success
  */
 int main(void)
 {
