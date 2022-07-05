@@ -8,8 +8,8 @@
 
 int main (void)
 {
-	int putchar (int char);
-	void print_alphabet(void);	
+	 putchar();
+	 print_alphabet();	
 
 return (0);
 }
