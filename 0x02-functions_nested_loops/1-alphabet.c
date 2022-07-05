@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "main.h"
 /**
  * main - main entry point
@@ -6,13 +5,14 @@
  * Return: returns 0 (always success)
  */
 
+
 void print_alphabet(void)
 {
-	int print_alphabet;
+	char i;
 
-	for (print_alphabet= 'a'; print_alphabet <= 'z'; print_alphabet++)
-	{
-	putchar(print_alphabet);
-	}
-	putchar('\n');
+	for (i = 'a'; i <= 'z'; i++)
+	_putchar(i);
+	_putchar('\n');
 }
+
+
