@@ -1,10 +1,8 @@
 #include "main.h"
 /**
- * main - main entry point
- * Description: prints
+ * print_alphabet - the function prints alphats
  * Return: returns 0 (always success)
  */
-
 
 void print_alphabet(void)
 {
@@ -14,5 +12,3 @@ void print_alphabet(void)
 	_putchar(i);
 	_putchar('\n');
 }
-
-
