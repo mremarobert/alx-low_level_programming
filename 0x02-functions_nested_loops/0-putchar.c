@@ -6,9 +6,13 @@
  */
 int main(void)
 {
-	char name[] = "_putchar";
+	char name[8] = "_putchar";
+	int i;
 
-	putchar(name);
+	for (i = 0; i < 8; i++)
+	{
+	putchar(name[i]);
+	}
 	putchar('\n');
 return (0);
 }
