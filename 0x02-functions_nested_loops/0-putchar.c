@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <main.h>
+
 /**
  * main - entry point to the function
  * Description: Contains the body of the function used
@@ -6,7 +8,8 @@
  */
 int main(void)
 {
-	printf("_putchar\n");
+	char name[]="_putchar";
 
+	putchar(name'\n');
 return (0);
 }
