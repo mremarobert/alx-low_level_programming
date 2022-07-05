@@ -1,3 +1,6 @@
-#include <stdio.h>
+
+int putchar (int char );
 
 void print_alphabet(void);
+
+
