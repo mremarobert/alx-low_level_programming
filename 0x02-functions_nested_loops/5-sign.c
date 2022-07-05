@@ -9,22 +9,22 @@
  */
 int print_sign(int n)
 {
-	int number = 0;
+	int value = 0;
 
-	if (number > 0)
+	if (n > 0)
 	{
-		number = 1;
+		value = 1;
 		_putchar('+');
 	}
-	else if (number == 0)
+	else if (n == 0)
 	{
-		number = 0;
+		value = 0;
 		_putchar('0');
 	}
 	else
 	{
-		number = -1;
+		value = -1;
 		_putchar('-');
 	{
-	return (number);
+	return (value);
 }
