@@ -1,18 +1,18 @@
-#include <stdio.h>
+#include <unistd.h>
+#include "main.h"
 /**
  * main - main entry point
  * Description: prints
  * Return: returns 0 (always success)
  */
 
-int main(void)
+void print_alphabet(void)
 {
-	int x;
+	int print_alphabet;
 
-	for (x = 'a'; x <= 'z'; x++)
+	for (print_alphabet= 'a'; print_alphabet <= 'z'; print_alphabet++)
 	{
-	putchar(x);
+	putchar(print_alphabet);
 	}
 	putchar('\n');
-return (0);
 }
