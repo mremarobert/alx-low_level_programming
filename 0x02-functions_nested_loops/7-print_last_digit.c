@@ -1,4 +1,4 @@
-i#include "main.h"
+#include "main.h"
 /**
  * print_last_digit - prints the last digig of a number
  * @n: input parameter
