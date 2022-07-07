@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "main.h" 
 /**
  * main - causes an infinite loop
  * Description: returns i if its true others prints infinite loop avoided
