@@ -19,11 +19,9 @@ void more_numbers(void)
 				p = n % 10;
 
 			}
-
+			_putchar('0' + p);
 		}
-		_putchar('0' + p);
-
+		_putchar('\n');
+		i++;
 	}
-	_putchar('\n');
-	i++;
 }
