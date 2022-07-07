@@ -9,10 +9,11 @@ int main(void)
 	int i;
 
 	printf("incoming infinite loop\n");
-	while (i < 20)
-	{
-	putchar(i);
-	}
+/*	while (i < 20)
+ *	{
+ *	putchar(i);
+ *	}
+ */
 	printf("infinite loop avoided\n");
 
 return (0);
