@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * main - causes an infinite loop
- * Description: returns i if its true others prints infinite loop avoided
+ * Description: returns positive or negative
  * Return: returns 0
  */
 int main(void)
