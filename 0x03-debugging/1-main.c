@@ -8,8 +8,13 @@ int main(void)
 {
 	int i;
 
-	i = 0;
-	positive_or_negative(i);
+	printf("incoming infinite loop\n");
+/*	while (i < 20)
+ *	{
+ *	putchar(i);
+ *	}
+ */
+	printf("infinite loop avoided\n");
 
-	return (0);
+return (0);
 }
