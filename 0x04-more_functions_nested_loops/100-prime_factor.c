@@ -2,7 +2,7 @@
 /**
  * main - prints largest prime factor
  * Return: Always 0
-*/
+ */
 int main(void)
 {
 	long int x = 612852475143;
@@ -13,7 +13,7 @@ int main(void)
 
 		if (x % lpf == 0)
 		{
-		x = x / lpf;
+			x = x / lpf;
 		}
 	}
 	printf("%ld\n", lpf);
