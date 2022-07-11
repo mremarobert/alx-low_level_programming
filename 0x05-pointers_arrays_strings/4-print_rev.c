@@ -3,22 +3,21 @@
 /**
  * print_rev - a function that prints a string in reverse
  * @s: input parameter
+ * stringCounter is to first count to end, n is to count back
  * return: returns string in reverse
  */
 void print_rev(char *s)
 {
-	char rev = s[0];
-	int j = 0;
-	int i;
+	int stringCounter = 0;
+	int i, n;
 
-	while (s[j] != '\0')
-		j++;
-
-	for (i = 0; i < j; i++)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		j--;
-		rev = s[i];
-		s[i] = s[j];
-		s[j] = rev;
+		stringCounter++;
 	}
+	for (n = (stringCounter - 1); n >= 0; n--)
+	{
+		_putchar(s[n]);
+	}
+	_putchar('\n');
 }
