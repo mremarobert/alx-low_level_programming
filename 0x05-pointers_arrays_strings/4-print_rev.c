@@ -8,17 +8,17 @@
 void print_rev(char *s)
 {
 	char rev = s[0];
-	int stringElement = 0;
+	int j = 0;
 	int i;
 
-	while (s[stringElement] != '\0')
-		stringElement++;
+	while (s[j] != '\0')
+		j++;
 
-	for (i = 0; i < stringElement; i++)
+	for (i = 0; i < j; i++)
 	{
-		stringElement--;
+		j--;
 		rev = s[i];
-		s[i] = s[stringElement];
-		s[stringElement] = rev;
+		s[i] = s[j];
+		s[j] = rev;
 	}
 }
