@@ -1,26 +1,31 @@
 #include "main.h"
 /**
- * *rot13 - rotate characters 13 places in the alphabet
- * IF statement to be used only once
- * @s: input string or characters
- * Not allowed to use switch
- * Not allowed to use ternary operation
- * Return: Always 0 (success)
+ * rot13 - Entry point
+ * ONE if, TWO loops only...
+ * @n: input
+ * Return: decrypted string
  */
-char *rot13(char *s);
+char *rot13(char *n)
 {
-	int i, j;
-	char base[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char rot13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	int x, rot_c = 13, i = 0;
+	char toswap[] = {'A', 'N', 'a', 'n', 'B', 'O', 'b', 'o', 'C', 'P',
+		'c', 'p', 'D', 'Q', 'd', 'q', 'E', 'R', 'e', 'r', 'F', 'S', 'f',
+		's', 'G', 'T', 'g', 't', 'H', 'U', 'h', 'u', 'I', 'V', 'i', 'v',
+		'J', 'W', 'j', 'w', 'K', 'X', 'k', 'x', 'L', 'Y', 'l', 'y', 'M',
+		'Z', 'm', 'z'};
 
-	for (i = 0; s[i] != '\0'; i++)
+	while (n[i] != '\0')
 	{
-		for (j = 0; base[j] != '\0'; j++)
-			if (s[i] == base[j])
+		for (x = 0; x <= 51; x++)
+		{
+			if (n[i] == toswap[x])
 			{
-				s[i] = rot13[j];
-				break;
+				n[i] = n[i] + rot_c;
+				x = 51;
 			}
+			rot_c = rot_c * -1;
+		}
+		i++;
 	}
-	return (s);
+	return (n);
 }
