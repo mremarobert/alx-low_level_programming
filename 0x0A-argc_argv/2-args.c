@@ -7,10 +7,10 @@
  * Return: 0 - success
  */
 int main(int argc, char *argv[] __attribute__((unused)))
-{
+
 	int i;
 
-	for (i = 0; i < argc i++)
+	for (i = 0; i < argc; i++)
 	{
 	printf("argv[%d] = %s\n", i, argv[i]);
 	}
