@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		j = 7;
+		j = 1;
 		for (i = 1; i < argc; i++)
 		j *= atoi(argv[i]);
 
