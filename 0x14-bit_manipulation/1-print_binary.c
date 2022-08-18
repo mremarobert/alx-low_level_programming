@@ -17,7 +17,6 @@ void print_binary(unsigned long int n);
 
 	}
 	temp = n;
-	
 	while (temp != 0)
 	{
 		i++;
