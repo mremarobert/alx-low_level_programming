@@ -7,17 +7,6 @@
  *
  * Return: Success 1, Fail -1.
  */
-/*int set_bit(unsigned long int *n, unsigned int index)
-{
-	if ((*n >> index & 1) != 0 && (*n >> index & 1) != 1)
-		return (-1);
-	if (index > (sizeof(*n) * sizeof(unsigned long int)))
-		return (-1);
-	*n = *n >> index | 1;
-	*n = *n >> index;
-	return (1);
-}
-*/
 int set_bit(unsigned long int *n, unsigned int index)
 {
 	unsigned long int bits;
