@@ -16,15 +16,13 @@ void print_binary(unsigned long int n);
 		return;
 
 	}
-	
 	temp = n;
-
+	
 	while (temp != 0)
 	{
 		i++;
 		temp = temp >> 1;
 	}
-	
 	for (count = i - 1; count >= 0; count--)
 	{
 		k = n >> count;
