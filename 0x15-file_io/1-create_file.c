@@ -8,31 +8,21 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fd;
-	int nletters;
-	int rwr;
+	int i = 0;
+	int fn;
+	int wr;
 
 	if (!filename)
 		return (-1);
-
-	fd = open(filename, O_CREATE | O_WRONLY | O_TRUNC, 0600);
-
-	if (fd == -1)
+	fn = open(filename, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+	if (fn == -1)
 		return (-1);
 
-	if (!text_content)
-		text_content = "";
-
-	for (nletters = 0; text_content[nletters]; nletters++)
-	;
-
-	rwr = write(fd, text_content, nletters);
-
-	if (rwr == -1)
+	while (text_content && text_content[i])
+		i++;
+	wr = write(fn, text_content, i);
+	close(fn);
+	if (wr < 0)
 		return (-1);
-
-	close(fd);
-
 	return (1);
-
 }
