@@ -1,135 +1,73 @@
 #include "main.h"
+void closer(int arg_files);
 /**
- *main - Entry point.
- *@argc: Number of arguments
- *@argv: String containing filenames as arguments
- *
- *Return: 1 for success.
+ * main - Entry Point
+ * @argc: # of args
+ * @argv: array pointer for args
+ * Return: 0
  */
-
 int main(int argc, char *argv[])
 {
-	int r;
+	int file_from, file_to, file_from_r, wr_err;
+	char buf[1024];
 
-	r = cp(argc, argv);
-	return (r);
-}
+	if (argc != 3)
+	{
+		dprintf(2, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 
-/**
- *cp - copies the contents of one file into another
- *@argc: Number of arguments
- *@argv: String containing name of file to copy and file to be copied into
- *
- *Return: 1 for success
- */
-int cp(int argc, char **argv)
-{
-	char *buf;
-	int f1, r, t1, t2;
-	int f2 = 0;
-	int wr = 0;
+	file_from = open(argv[1], O_RDONLY);
+	if (file_from == -1)
+	{
+		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
 
-	buf = malloc(sizeof(*buf) * 1024);
-	f1 = open(argv[1], O_RDONLY);
-	t1 = tests(argc, argv, buf, f1);
-	if (t1 != 1)
-		exit(t1);
-	r = read(f1, buf, 1024);
-	if (r >= 0)
+	file_to = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	if (file_to == -1)
 	{
-		f2 = open(argv[2], O_RDWR | O_CREAT | O_TRUNC,
-S_IRUSR | S_IWUSR);
-		wr = write(f2, buf, r);
-		if (wr < 0)
-		{
-			free(buf);
-			wr = close(f1);
-			return (-1);
-		}
-		t2 = tests2(argv, buf, r, f1, f2, wr);
-		t2++;
-	}
-	else
-		t2 = tests2(argv, buf, r, f1, f2, wr);
-	return (1);
-}
-/**
- *tests - check for various errors
- *@argc: number of arguments to main
- *@buf: string containing contents of first file
- *@argv: string containing arguments to main
- *@f1: file descriptor for file 1
- *
- *Return: 1 for success, else value to pass to exit.
- */
-int tests(int argc, char **argv, char *buf, int f1)
-{
-	if (argc != 3 && argv[1] && argv[2])
-	{
-		dprintf(STDERR_FILENO, "Usage: cp %s %s\n", argv[1], argv[2]);
-		return (97);
-	}
-	else if (argc != 3 && argv[1])
-	{
-		dprintf(STDERR_FILENO, "Usage: cp %s (nil)\n", argv[1]);
-		return (97);
-	}
-	else if (argc != 3 && !argv[1])
-	{
-		dprintf(STDERR_FILENO, "Usage: cp (nil) (nil)\n");
-		return (97);
-	}
-	if (!buf)
-		return (-1);
-	if (f1 == -1)
-	{
-		free(buf);
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n"
-, argv[1]);
-		return (98);
-	}
-	return (1);
-}
-/**
- *tests2 - check for various errors and close files
- *@argv: string containing arguments to main
- *@buf: string containing contents of first file
- *@r: return value of read function
- *@wr: return value of write function
- *@f1: file descriptor for file 1
- *@f2: file descriptor for file 2
- *
- *Return: 1 for success, else exit with appropriate code.
- */
-int tests2(char **argv, char *buf, int r, int f1, int f2, int wr)
-{
-	if (r < 0)
-	{
-		free(buf);
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		r = close(f1);
-		if (r == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", f1);
-			exit(100);
-		}
+		dprintf(2, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
-	else
+
+	while (file_from_r >= 1024)
 	{
-		free(buf);
-		r = close(f1);
-		if (r == -1)
+		file_from_r = read(file_from, buf, 1024);
+		if (file_from_r == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", f1);
-			exit(100);
+			dprintf(2, "Error: Can't read from file %s\n", argv[1]);
+			closer(file_from);
+			closer(file_to);
+			exit(98);
 		}
-		wr = close(f2);
-		if (wr == -1)
+		wr_err = write(file_to, buf, file_from_r);
+		if (wr_err == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", f2);
-			exit(100);
+			dprintf(2, "Error: Can't write to %s\n", argv[2]);
+			exit(99);
 		}
 	}
-	return (1);
+
+	closer(file_from);
+	closer(file_to);
+	return (0);
+}
+
+/**
+ * closer - close with error
+ * @arg_files: argv 1 or 2
+ * Return: void
+ */
+void closer(int arg_files)
+{
+	int close_err;
+
+	close_err = close(arg_files);
+
+	if (close_err == -1)
+	{
+		dprintf(2, "Error: Can't close fd %d\n", arg_files);
+		exit(100);
+	}
 }
